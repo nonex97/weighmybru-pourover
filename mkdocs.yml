@@ -1,0 +1,45 @@
+site_name: WeighMyBru Pour-Over Build
+site_description: Parts list, flashing guide, and code changes for my custom WeighMyBru pour-over variant
+site_url: https://YOUR-USERNAME.github.io/weighmybru-pourover
+repo_url: https://github.com/YOUR-USERNAME/weighmybru-pourover
+repo_name: weighmybru-pourover
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: brown
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: brown
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.code.copy
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+
+nav:
+  - Home: index.md
+  - Parts List: parts-list.md
+  - Print Variations: print-variations.md
+  - Flashing Guide: flashing.md
+  - Code Changes: code-changes.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets
+
+plugins:
+  - search
+  - open-in-new-tab
