@@ -1,0 +1,1092 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Parts list, flashing guide, and code changes for my custom WeighMyBru pour-over variant">
+      
+      
+      
+        <link rel="canonical" href="https://YOUR-USERNAME.github.io/weighmybru-pourover/flashing/">
+      
+      
+        <link rel="prev" href="../print-variations/">
+      
+      
+        <link rel="next" href="../code-changes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Flashing Guide - WeighMyBru Pour-Over Build</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#flashing-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="WeighMyBru Pour-Over Build" class="md-header__button md-logo" aria-label="WeighMyBru Pour-Over Build" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            WeighMyBru Pour-Over Build
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Flashing Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/YOUR-USERNAME/weighmybru-pourover" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    weighmybru-pourover
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parts-list/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Parts List
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../print-variations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Print Variations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Flashing Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../code-changes/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Code Changes
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="WeighMyBru Pour-Over Build" class="md-nav__button md-logo" aria-label="WeighMyBru Pour-Over Build" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    WeighMyBru Pour-Over Build
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/YOUR-USERNAME/weighmybru-pourover" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    weighmybru-pourover
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parts-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parts List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../print-variations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Print Variations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashing Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-install-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Install Git
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Clone the Repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-open-in-vscode-with-platformio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Open in VSCode with PlatformIO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-platformioini" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Configure platformio.ini
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-apply-code-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Apply Code Changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-changes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Changes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-install-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Install Git
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Clone the Repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-open-in-vscode-with-platformio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Open in VSCode with PlatformIO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-platformioini" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Configure platformio.ini
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-apply-code-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Apply Code Changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="flashing-guide">Flashing Guide</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before starting, make sure you have the following ready:</p>
+<p>✅ VSCode installed</p>
+<p>✅ PlatformIO extension installed</p>
+<p>✅ Seeed Studio XIAO ESP32S3</p>
+<p>✅ USB-C cable (data-capable, not charge-only)</p>
+<hr />
+<h2 id="step-1-install-git">Step 1 — Install Git</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">macOS</label><label for="__tabbed_1_3">Linux (Ubuntu/Debian)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Download Git from <a href="https://git-scm.com/download/win">git-scm.com</a>
+and run the installer with default settings. Then verify in PowerShell:</p>
+<div class="highlight"><pre><span></span><code><span class="n">git</span> <span class="p">-</span><span class="n">-version</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Using Homebrew
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>git
+</code></pre></div>
+Or download from <a href="https://git-scm.com/install/mac">git-scm.com</a></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="step-2-clone-the-repository">Step 2 — Clone the Repository</h2>
+<p>Open a terminal and run:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nb">cd </span><span class="p">~/</span><span class="n">Documents</span> <span class="c"># or wherever you keep projects</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>mkdir esp32-projects
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>git clone -b SH1106 https://github.com/mlodedrwale/weighmybru2.git
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>cd weighmybru2
+</code></pre></div></p>
+<hr />
+<h2 id="step-3-open-in-vscode-with-platformio">Step 3 — Open in VSCode with PlatformIO</h2>
+<ol>
+<li>Launch VSCode</li>
+<li>Go to <strong>File → Open Folder</strong></li>
+<li>Navigate to and select the <code>weighmybru2</code> folder you just cloned</li>
+<li>Click <strong>Select Folder</strong></li>
+<li>Wait for PlatformIO to initialize — you'll see activity in the bottom status bar</li>
+</ol>
+<hr />
+<h2 id="step-4-configure-platformioini">Step 4 — Configure <code>platformio.ini</code></h2>
+<p>Check that the <code>platformio.ini</code> in the root of the project matches this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[env:esp32-s3-devkitc-1]</span>
+<span class="na">platform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">espressif32@6.12.0</span>
+<span class="na">board</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">esp32-s3-devkitc-1</span>
+<span class="na">framework</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">arduino</span>
+<span class="na">monitor_speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">115200</span>
+<span class="na">board_upload.flash_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">4MB</span>
+<span class="na">board_build.filesystem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">littlefs</span>
+<span class="na">board_build.partitions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">huge_app.csv</span>
+<span class="na">upload_protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">esptool</span>
+<span class="na">upload_speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">460800</span>
+<span class="na">upload_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="na">--chip</span><span class="o">=</span><span class="s">esp32s3</span>
+<span class="w">    </span><span class="na">--before</span><span class="o">=</span><span class="s">default_reset</span>
+<span class="w">    </span><span class="na">--after</span><span class="o">=</span><span class="s">hard_reset</span>
+<span class="na">monitor_rts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
+<span class="na">monitor_dtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
+<span class="na">build_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="na">-DARDUINO_USB_CDC_ON_BOOT</span><span class="o">=</span><span class="s">1</span>
+<span class="w">    </span><span class="na">-DBOARD_HAS_PSRAM</span>
+<span class="w">    </span><span class="na">-Os</span>
+<span class="w">    </span><span class="na">-DCORE_DEBUG_LEVEL</span><span class="o">=</span><span class="s">0</span>
+<span class="na">lib_deps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="na">robtillaart/HX711@^0.6.0</span>
+<span class="w">    </span><span class="na">https</span><span class="o">:</span><span class="s">//github.com/me-no-dev/ESPAsyncWebServer.git</span>
+<span class="w">    </span><span class="na">https</span><span class="o">:</span><span class="s">//github.com/me-no-dev/AsyncTCP.git</span>
+<span class="w">    </span><span class="na">h2zero/NimBLE-Arduino@^1.4.0</span>
+<span class="w">    </span><span class="na">adafruit/Adafruit SSD1306@^2.5.7</span>
+<span class="w">    </span><span class="na">adafruit/Adafruit GFX Library@^1.11.9</span>
+<span class="w">    </span><span class="na">adafruit/Adafruit SH110X@^2.1.14</span>
+</code></pre></div>
+<hr />
+<h2 id="step-5-apply-code-changes">Step 5 — Apply Code Changes</h2>
+<h1 id="code-changes">Code Changes</h1>
+<p>The original WeighMyBru² firmware needs a few small changes to work with 
+the hardware used in this build.</p>
+<hr />
+<h2 id="required-changes">Required Changes</h2>
+<h3 id="1-display-controller-configh-line-20">1. Display Controller — <code>config.h</code> (line 20)</h3>
+<p>Change from:</p>
+<div class="no-copy highlight"><pre><span></span><code><span class="cp">#define DISPLAY_CONTROLLER DISPLAY_CONTROLLER_SSD1306</span>
+</code></pre></div>
+<p>To:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#define DISPLAY_CONTROLLER DISPLAY_CONTROLLER_SH1106</span>
+</code></pre></div>
+<hr />
+<h3 id="2-display-height-configh-line-24">2. Display Height — <code>config.h</code> (line 24)</h3>
+<p>Change from:</p>
+<div class="no-copy highlight"><pre><span></span><code><span class="cp">#define DISPLAY_HEIGHT DISPLAY_HEIGHT_32</span>
+</code></pre></div>
+<p>To:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#define DISPLAY_HEIGHT DISPLAY_HEIGHT_64</span>
+</code></pre></div>
+<hr />
+<h3 id="3-display-rotation-sh1106driverh-line-23">3. Display Rotation — <code>SH1106Driver.h</code> (line 23)</h3>
+<p>Change from:</p>
+<div class="no-copy highlight"><pre><span></span><code><span class="n">oled</span><span class="p">.</span><span class="n">setRotation</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<p>To:</p>
+<div class="highlight"><pre><span></span><code><span class="n">oled</span><span class="p">.</span><span class="n">setRotation</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Display upside down?</p>
+<p>If the display appears upside down after flashing, change the value 
+back from <code>0</code> to <code>2</code>.</p>
+</div>
+<hr />
+<h2 id="optional-changes">Optional Changes</h2>
+<h3 id="always-on-battery-percentage-displaylayouth">Always-On Battery Percentage — <code>DisplayLayout.h</code></h3>
+<p>By default the battery percentage is not permanently shown on the display. 
+To add it, find line 152 in <code>DisplayLayout.h</code>:</p>
+<div class="no-copy highlight"><pre><span></span><code><span class="c1">// display.print(&quot;WI&quot;);</span>
+</code></pre></div>
+<p>Add the following block immediately after it:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// BATTERY PERCENTAGE</span>
+<span class="w">        </span><span class="n">display</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="o">&amp;</span><span class="n">FreeMonoBold9pt7b</span><span class="p">);</span>
+<span class="w">        </span><span class="n">display</span><span class="p">.</span><span class="n">setTextSize</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">batteryStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">batteryPercent</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Calculate text width for right alignment</span>
+<span class="w">        </span><span class="kt">int16_t</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="w">        </span><span class="n">display</span><span class="p">.</span><span class="n">getTextBounds</span><span class="p">(</span><span class="n">batteryStr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">h</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Right-align: set cursor so the text ends at DISPLAY_WIDTH (128)</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cursorX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DISPLAY_WIDTH</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">        </span><span class="n">display</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">cursorX</span><span class="p">,</span><span class="w"> </span><span class="mi">57</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Blink if battery &lt; 10%</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">batteryPercent</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">millis</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">500</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Show only every other 500ms</span>
+<span class="w">                </span><span class="n">display</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">batteryStr</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">display</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">batteryStr</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+<p>This renders the battery percentage right-aligned at the bottom of the 
+display, and blinks it when the battery drops below 10%.</p>
+<hr />
+<h2 id="step-6-connect-the-board">Step 6 — Connect the Board</h2>
+<ol>
+<li>Plug the XIAO ESP32S3 into your computer via USB-C</li>
+<li>If the board isn't detected, put it into flash mode manually:<ul>
+<li>Hold <strong>BOOT</strong> while plugging in the USB</li>
+<li>Press and release <strong>RESET</strong></li>
+<li>Release <strong>BOOT</strong></li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="step-7-find-your-com-port">Step 7 — Find Your COM Port</h2>
+<p>In VSCode, check the <strong>blue bottom status bar</strong> — the COM port is listed there (e.g. <code>COM3</code> on Windows, "/dev/ttyUSB0" on Linux).</p>
+<p>If it's not visible:</p>
+<ul>
+<li><strong>PlatformIO sidebar</strong> → Devices</li>
+<li><strong>Windows:</strong> Device Manager → Ports (COM &amp; LPT)</li>
+<li><strong>macOS/Linux:</strong> <code>ls /dev/tty*</code></li>
+</ul>
+<hr />
+<h2 id="step-8-build-and-upload">Step 8 — Build and Upload</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Status Bar (Easiest)</label><label for="__tabbed_2_2">PlatformIO Sidebar</label><label for="__tabbed_2_3">Terminal</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Click <strong>✓</strong> in the blue bottom bar to build</li>
+<li>Click <strong>→</strong> to upload</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ol>
+<li>Click the PlatformIO icon (alien head) in the left sidebar</li>
+<li>Expand <strong>PROJECT TASKS → esp32-s3-devkitc-1 → General</strong> </li>
+<li>Click <strong>Build</strong> to compile the code first</li>
+<li><strong>Wait for successful build</strong> (check terminal output)</li>
+<li>Click <strong>Upload</strong></li>
+</ol>
+</div>
+<div class="tabbed-block">
+<ol>
+<li><strong>Open PlatformIO terminal:</strong> Terminal → New Terminal</li>
+<li><strong>Build the project:</strong>
+<div class="highlight"><pre><span></span><code>pio<span class="w"> </span>run
+</code></pre></div></li>
+<li><strong>Upload to ESP32:</strong>
+<div class="highlight"><pre><span></span><code>pio run -t upload -t uploadfs
+</code></pre></div></li>
+</ol>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="step-8b-upload-filesystem-image">Step 8b — Upload Filesystem Image</h2>
+<div class="admonition warning">
+<p class="admonition-title">Don't skip this step</p>
+<p>Flashing the code alone is not enough. The web interface files are stored 
+separately in the filesystem. If you skip this step, the scale will flash 
+successfully but <code>weighmybru.local</code> will not be reachable.</p>
+</div>
+<p>After uploading the code, you need to also upload the filesystem image:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">PlatformIO Sidebar</label><label for="__tabbed_3_2">Terminal</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>Click the PlatformIO icon (alien head) in the left sidebar</li>
+<li>Expand **PROJECT TASKS → esp32-s3-devkitc-1 → Platform   **</li>
+<li>Scroll down and click <strong>Upload Filesystem Image</strong></li>
+<li>Wait for the upload to complete</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>pio<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>uploadfs
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Once both uploads are done, press the <strong>RESET</strong> button on the board and 
+<code>weighmybru.local</code> should become reachable after connecting to the scale's WiFi.</p>
+<h2 id="step-9-monitor-serial-output">Step 9 — Monitor Serial Output</h2>
+<p>Click the <strong>plug icon</strong> in the blue status bar, or run:</p>
+<div class="highlight"><pre><span></span><code>pio<span class="w"> </span>device<span class="w"> </span>monitor
+</code></pre></div>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<details class="question">
+<summary>Upload failing</summary>
+<ul>
+<li>Wrong COM port — check Device Manager and verify <code>platformio.ini</code></li>
+<li>Board not in flash mode — retry the BOOT + RESET procedure</li>
+<li>Driver issue — install <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers">ESP32 USB drivers</a> from Silicon Labs</li>
+</ul>
+</details>
+<details class="question">
+<summary>Build errors</summary>
+<ul>
+<li>Missing libraries — they'll be named in the error output; PlatformIO installs them automatically on the next build</li>
+<li>Wrong board config — confirm your <code>platformio.ini</code> matches the config above exactly</li>
+</ul>
+</details>
+<details class="question">
+<summary>Device not found</summary>
+<p>List connected devices
+<div class="highlight"><pre><span></span><code>pio<span class="w"> </span>device<span class="w"> </span>list
+</code></pre></div>
+On Linux, you might need
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">666</span><span class="w"> </span>/dev/ttyUSB0<span class="w">  </span><span class="c1"># or your specific device</span>
+</code></pre></div></p>
+</details>
+<hr />
+<h2 id="post-flash-setup">Post-Flash Setup</h2>
+<ol>
+<li><strong>Connect to the ESP32's WiFi access point</strong> (check serial monitor for details - AP IP :192.168.4.1)</li>
+<li><strong>Access the web interface</strong> for calibration and configuration</li>
+<li><strong>Configure your home WiFi</strong> through the web interface</li>
+</ol>
+<hr />
+<h2 id="success-indicators">Success Indicators</h2>
+<p>✅ Build completes without errors</p>
+<p>✅ Upload shows "SUCCESS" message</p>
+<p>✅ Serial monitor shows boot messages</p>
+<p>✅ ESP32 creates WiFi access point (for initial setup)</p>
+<p>Your WeighMyBru scale should now be running! Check the serial monitor for the web interface URL and initial setup instructions.</p>
+<h2 id="next-steps-calibration">Next Steps — Calibration</h2>
+<p>With the firmware flashed and the scale booting correctly, the last step 
+is to calibrate the scale.</p>
+<p>The calibration process for this build is identical to the original 
+WeighMyBru², so follow the official guide:</p>
+<p>👉 <a href="https://weighmybru.com/guides/calibration-guide/">WeighMyBru Calibration Guide</a></p>
+<h2 id="hardcoding-wifi-credentials-optional">Hardcoding WiFi Credentials (Optional)</h2>
+<div class="admonition note">
+<p class="admonition-title">Only do this if the access point is not showing up</p>
+<p>In most cases the scale will create a WiFi access point on first boot 
+and you can configure credentials through the web interface. Only follow 
+these steps if no access point appears and the serial monitor is showing 
+WiFi-related errors on boot.</p>
+</div>
+<h3 id="step-1-open-maincpp">Step 1 — Open <code>main.cpp</code></h3>
+<p>In VSCode, open <code>src/main.cpp</code> and find the <code>#include</code> block at the top of 
+the file. Add these two lines directly after it:</p>
+<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">hardcode_ssid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;YOUR_SSID&quot;</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">hardcode_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;YOUR_PASSWORD&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>Replace <code>YOUR_SSID</code> and <code>YOUR_PASSWORD</code> with your actual WiFi network name 
+and password.</p>
+<h3 id="step-2-find-the-wifi-sleep-lines">Step 2 — Find the WiFi Sleep Lines</h3>
+<p>Scroll down in <code>main.cpp</code> until you find these two lines (around line 108):</p>
+<div class="no-copy highlight"><pre><span></span><code><span class="n">WiFi</span><span class="p">.</span><span class="n">setSleep</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;WiFi power management enabled for battery optimization&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Add the following line immediately after them:</p>
+<div class="highlight"><pre><span></span><code><span class="n">saveWiFiCredentials</span><span class="p">(</span><span class="n">hardcode_ssid</span><span class="p">,</span><span class="w"> </span><span class="n">hardcode_password</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="step-3-re-flash">Step 3 — Re-flash</h3>
+<p>Save the file, then repeat <strong>Step 7</strong> (Build and Upload). The scale will now connect directly to your 
+WiFi network on boot instead of creating an access point.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.top", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>
